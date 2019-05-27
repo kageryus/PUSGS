@@ -12,7 +12,7 @@ namespace WebApp.Persistence
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("name=DefaultConnection", throwIfV1Schema: false)
+            : base("name=BusSqlDataBase", throwIfV1Schema: false)
         {
         }
         
