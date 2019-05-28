@@ -21,6 +21,7 @@ namespace WebApp.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
+            context.Lines.Add(new Line() { Name = "8A" });
 
             if (!context.Roles.Any(r => r.Name == "Admin"))
             {

@@ -296,3 +296,4 @@ D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.csproj.CoreCompil
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.csproj.CopyComplete
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.dll
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.pdb
+D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.FirstMigration.resources
