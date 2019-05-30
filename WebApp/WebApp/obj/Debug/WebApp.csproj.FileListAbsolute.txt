@@ -290,10 +290,9 @@ D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\bin\Microsoft.Owin.Security.Micros
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\bin\System.Web.Http.Owin.xml
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.csprojAssemblyReference.cache
-D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.InitialMigration.resources
-D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.csproj.GenerateResource.cache
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.csproj.CoreCompileInputs.cache
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.csproj.CopyComplete
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.dll
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.pdb
-D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.FirstMigration.resources
+D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.ModelUpdate.resources
+D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.csproj.GenerateResource.cache

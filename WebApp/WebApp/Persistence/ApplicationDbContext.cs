@@ -14,6 +14,11 @@ namespace WebApp.Persistence
         public DbSet<Line> Lines { get; set; }
         public DbSet<Station> Stations { get; set; }
         public DbSet<Timetable> TimeTables { get; set; }
+
+        public DbSet<Index> Index { get; set; }
+        public DbSet<Location> Location { get; set; }
+        public DbSet<Pricelist> Pricelist { get; set; }
+        public DbSet<Stuf> Stuf { get; set; }
         public ApplicationDbContext()
             : base("name=BusSqlDataBase", throwIfV1Schema: false)
         {

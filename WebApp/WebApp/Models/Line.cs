@@ -9,10 +9,14 @@ namespace WebApp.Models
 {
     public class Line
     {
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
-        public List<Location> coordinates {get;set;}
+        public Guid TimetableId { get; set; }
+        public Timetable Timetable { get; set; }
+
+        public virtual List<Location> coordinates {get;set;}
+
+        public virtual List<Station> stations { get; set; }
         
-        public Guid Timetable { get; set; }
     }
 }

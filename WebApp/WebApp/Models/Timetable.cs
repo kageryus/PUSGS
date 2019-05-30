@@ -7,9 +7,14 @@ namespace WebApp.Models
 {
     public class Timetable
     {
-        public Guid ID { get; set; }
-        public string LineName { get; set; }
+        public Guid Id { get; set; }
+
         //kljuc je sat, vrednost su minuti u string formatu tipa 16,26,36, itd do 59
-        public Dictionary<int,string> Time { get; set; }
+        public string WorkDay { get; set; } //Format ce biti 15:13,14,15,16 ; 16:23,46,......
+
+        public string Saturday { get; set; }
+
+        public string Sunday { get; set; }
+        //subotu i nedelju 
     }
 }

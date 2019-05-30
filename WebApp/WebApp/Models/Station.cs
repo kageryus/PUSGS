@@ -7,8 +7,11 @@ namespace WebApp.Models
 {
     public class Station
     {
-        public Guid ID {get;set;}
+        public Guid Id {get;set;}
         public string Name { get; set; }
-        public Location Location { get; set; }
+        public Guid LocationId { get; set; }
+        public Location Location { get; set; } //long lat dodati
+
+        public virtual List<Station> stations { get; set; }
     }
 }

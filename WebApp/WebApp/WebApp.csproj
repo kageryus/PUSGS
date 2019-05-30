@@ -256,21 +256,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905222056072_InitialMigration.cs" />
-    <Compile Include="Migrations\201905222056072_InitialMigration.Designer.cs">
-      <DependentUpon>201905222056072_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905282252095_FirstMigration.cs" />
-    <Compile Include="Migrations\201905282252095_FirstMigration.Designer.cs">
-      <DependentUpon>201905282252095_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201905301835535_ModelUpdate.cs" />
+    <Compile Include="Migrations\201905301835535_ModelUpdate.Designer.cs">
+      <DependentUpon>201905301835535_ModelUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\Index.cs" />
     <Compile Include="Models\Line.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Pricelist.cs" />
     <Compile Include="Models\Station.cs" />
+    <Compile Include="Models\Stuf.cs" />
     <Compile Include="Models\Timetable.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Persistence\Repository\ILineRepository.cs" />
@@ -381,11 +381,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905222056072_InitialMigration.resx">
-      <DependentUpon>201905222056072_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905282252095_FirstMigration.resx">
-      <DependentUpon>201905282252095_FirstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905301835535_ModelUpdate.resx">
+      <DependentUpon>201905301835535_ModelUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
