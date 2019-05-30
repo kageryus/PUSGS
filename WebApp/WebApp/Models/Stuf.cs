@@ -7,7 +7,7 @@ namespace WebApp.Models
 {
     public class Stuf
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public TicketType Type { get; set; }
 
         public int Price { get; set; }

@@ -9,9 +9,9 @@ namespace WebApp.Models
 {
     public class Line
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public Guid TimetableId { get; set; }
+        public int TimetableId { get; set; }
         public Timetable Timetable { get; set; }
 
         public virtual List<Location> coordinates {get;set;}

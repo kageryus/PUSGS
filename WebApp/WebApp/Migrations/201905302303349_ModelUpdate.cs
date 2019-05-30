@@ -11,7 +11,7 @@ namespace WebApp.Migrations
                 "dbo.Indices",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         CustomerType = c.Int(nullable: false),
                         Coefficient = c.Single(nullable: false),
                     })
@@ -21,9 +21,9 @@ namespace WebApp.Migrations
                 "dbo.Lines",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        TimetableId = c.Guid(nullable: false),
+                        TimetableId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Timetables", t => t.TimetableId, cascadeDelete: true)
@@ -33,10 +33,10 @@ namespace WebApp.Migrations
                 "dbo.Locations",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Longitude = c.Double(nullable: false),
                         Latitude = c.Double(nullable: false),
-                        Line_Id = c.Guid(),
+                        Line_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Lines", t => t.Line_Id)
@@ -46,11 +46,11 @@ namespace WebApp.Migrations
                 "dbo.Stations",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        LocationId = c.Guid(nullable: false),
-                        Station_Id = c.Guid(),
-                        Line_Id = c.Guid(),
+                        LocationId = c.Int(nullable: false),
+                        Station_Id = c.Int(),
+                        Line_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Locations", t => t.LocationId, cascadeDelete: true)
@@ -64,7 +64,7 @@ namespace WebApp.Migrations
                 "dbo.Timetables",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         WorkDay = c.String(),
                         Saturday = c.String(),
                         Sunday = c.String(),
@@ -75,7 +75,7 @@ namespace WebApp.Migrations
                 "dbo.Pricelists",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         StartDate = c.DateTime(nullable: false),
                         EndDate = c.DateTime(nullable: false),
                         Active = c.Boolean(nullable: false),
@@ -86,10 +86,10 @@ namespace WebApp.Migrations
                 "dbo.Stufs",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Type = c.Int(nullable: false),
                         Price = c.Int(nullable: false),
-                        Pricelist_Id = c.Guid(),
+                        Pricelist_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Pricelists", t => t.Pricelist_Id)

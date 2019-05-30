@@ -7,7 +7,7 @@ namespace WebApp.Models
 {
     public class Index
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public CustomerType CustomerType { get; set; }
 
