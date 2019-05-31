@@ -12,6 +12,5 @@ namespace WebApp.Models
         public int LocationId { get; set; }
         public Location Location { get; set; } //long lat dodati
 
-        public virtual List<Station> stations { get; set; }
     }
 }

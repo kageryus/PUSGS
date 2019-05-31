@@ -12,6 +12,11 @@ namespace WebApp.Persistence.UnitOfWork
         IStationRepository Station {get;set;}
         ITimetableRepository Timetable { get; set; }
         ILineRepository Line { get; set; }
+        IIndexRepository Index { get; set; }
+        ILocationRepository Location { get; set; }
+        IPricelistRepository Pricelist { get; set; }
+        IStufRepository Stuf { get; set; }
+
         int Complete();
     }
 }

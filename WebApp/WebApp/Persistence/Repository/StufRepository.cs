@@ -7,10 +7,10 @@ using WebApp.Models;
 
 namespace WebApp.Persistence.Repository
 {
-    public class StationRepository : Repository<Station, int>, IStationRepository
+    public class StufRepository : Repository<Stuf, int>, IStufRepository
     {
         protected ApplicationDbContext AppDbContext { get { return context as ApplicationDbContext; } }
-        public StationRepository(DbContext context) : base(context)
+        public StufRepository(DbContext context) : base(context)
         {
 
         }

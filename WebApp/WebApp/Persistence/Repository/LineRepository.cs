@@ -7,7 +7,7 @@ using WebApp.Models;
 
 namespace WebApp.Persistence.Repository
 {
-    public class LineRepository : Repository<Line,Guid>, ILineRepository
+    public class LineRepository : Repository<Line,int>, ILineRepository
     {
         protected ApplicationDbContext AppDbContext { get { return context as ApplicationDbContext; } }
         public LineRepository(DbContext context) : base(context)

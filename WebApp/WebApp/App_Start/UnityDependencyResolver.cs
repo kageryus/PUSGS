@@ -73,6 +73,10 @@ namespace WebApp.App_Start
             container.RegisterType<ILineRepository, LineRepository>();
             container.RegisterType<IStationRepository, StationRepository>();
             container.RegisterType<ITimetableRepository, TimetableRepository>();
+            container.RegisterType<IIndexRepository, IndexRepository>();
+            container.RegisterType<ILocationRepository, LocationRepository>();
+            container.RegisterType<IPricelistRepository, PricelistRepository>();
+
         }
 
         public void Dispose()

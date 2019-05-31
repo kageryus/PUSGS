@@ -19,6 +19,14 @@ namespace WebApp.Persistence.UnitOfWork
 
         [Dependency]
         public ITimetableRepository Timetable { get; set; }
+        [Dependency]
+        public IIndexRepository Index { get; set; }
+        [Dependency]
+        public ILocationRepository Location { get; set; }
+        [Dependency]
+        public IPricelistRepository Pricelist { get; set; }
+        [Dependency]
+        public IStufRepository Stuf { get; set; }
         public DemoUnitOfWork(DbContext context)
         {
             _context = context;

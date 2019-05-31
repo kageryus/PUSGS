@@ -7,7 +7,7 @@ using WebApp.Models;
 
 namespace WebApp.Persistence.Repository
 {
-    public interface ITimetableRepository : IRepository<Timetable, Guid>
+    public interface ITimetableRepository : IRepository<Timetable, int>
     {
     }
 }

@@ -7,7 +7,7 @@ using WebApp.Models;
 
 namespace WebApp.Persistence.Repository
 {
-    public class TimetableRepository : Repository<Timetable,Guid>, ITimetableRepository
+    public class TimetableRepository : Repository<Timetable,int>, ITimetableRepository
     {
         protected ApplicationDbContext AppDbContext { get { return context as ApplicationDbContext; } }
 

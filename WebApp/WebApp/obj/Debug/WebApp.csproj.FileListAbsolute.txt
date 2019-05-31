@@ -296,3 +296,4 @@ D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.dll
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.pdb
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.ModelUpdate.resources
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.csproj.GenerateResource.cache
+D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.ModelUpdate1.resources
