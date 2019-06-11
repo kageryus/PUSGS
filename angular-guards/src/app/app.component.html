@@ -1,0 +1,18 @@
+
+<h2 class="title">Prodaja karata</h2>
+<nav>
+  <a routerLink="/kupiKartu" routerLinkActive="active">Kupi kartu</a>
+  <a routerLink="/**" routerLinkActive="active">Red voznje</a>
+  <a routerLink="/mreza" routerLinkActive="active">Mreza linija</a>
+  <a routerLink="/**" routerLinkActive="active">Trenutna lokacija vozila</a>
+  <a routerLink="/**" routerLinkActive="active">Cenovnik</a>
+  <a routerLink="/login" routerLinkActive="active">Login</a>
+  <a routerLink="/admin" routerLinkActive="active">Admin</a>
+  <a routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a>
+  
+  
+</nav>
+<div>
+  <router-outlet #routerOutlet="outlet"></router-outlet>
+</div>
+<router-outlet name="popup"></router-outlet>
