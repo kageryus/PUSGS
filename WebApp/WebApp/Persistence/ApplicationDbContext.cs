@@ -19,6 +19,8 @@ namespace WebApp.Persistence
         public DbSet<Location> Locations { get; set; }
         public DbSet<Pricelist> Pricelists { get; set; }
         public DbSet<Stuf> Stufs { get; set; }
+
+        public DbSet<Ticket> Tickets { get; set; }
         public ApplicationDbContext()
             : base("name=BusSqlDataBase", throwIfV1Schema: false)
         {

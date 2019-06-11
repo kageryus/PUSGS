@@ -13,20 +13,31 @@ namespace WebApp.Controllers
     [RoutePrefix("api/Line")]
     public class LineController : ApiController
     {
-        private DbContext _context;
-        IUnitOfWork _unitOfWork;
+        //private DbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public LineController(IUnitOfWork unitOfWork, DbContext context)
+      
+        public LineController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _context = context;
+           // _context = context;
 
         }
+
         [HttpGet]
         [Route("GetAll")]
         public IEnumerable<Line> GetLines()
         {
+
             return _unitOfWork.Line.GetAll();
+        }
+
+        [HttpGet]
+        [Route("GetLine/{id}")]
+        public IHttpActionResult GetLine(int id)
+        {
+            var line = _unitOfWork.Line.Get(id);
+            return Ok(line);
         }
 
 

@@ -76,6 +76,7 @@ namespace WebApp.App_Start
             container.RegisterType<IIndexRepository, IndexRepository>();
             container.RegisterType<ILocationRepository, LocationRepository>();
             container.RegisterType<IPricelistRepository, PricelistRepository>();
+            container.RegisterType<IStufRepository, StufRepository>();
 
         }
 

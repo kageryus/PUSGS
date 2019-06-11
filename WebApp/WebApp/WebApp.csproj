@@ -252,6 +252,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LineController.cs" />
+    <Compile Include="Controllers\PricelistController.cs" />
+    <Compile Include="Controllers\StationController.cs" />
+    <Compile Include="Controllers\TimetableController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -264,6 +267,14 @@
     <Compile Include="Migrations\201905311347285_ModelUpdate1.Designer.cs">
       <DependentUpon>201905311347285_ModelUpdate1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906101740257_TicketTableAdd.cs" />
+    <Compile Include="Migrations\201906101740257_TicketTableAdd.Designer.cs">
+      <DependentUpon>201906101740257_TicketTableAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906101743410_TicketTableAdd1.cs" />
+    <Compile Include="Migrations\201906101743410_TicketTableAdd1.Designer.cs">
+      <DependentUpon>201906101743410_TicketTableAdd1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -275,6 +286,7 @@
     <Compile Include="Models\Pricelist.cs" />
     <Compile Include="Models\Station.cs" />
     <Compile Include="Models\Stuf.cs" />
+    <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\Timetable.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Persistence\Repository\IIndexRepository.cs" />
@@ -398,6 +410,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905311347285_ModelUpdate1.resx">
       <DependentUpon>201905311347285_ModelUpdate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101740257_TicketTableAdd.resx">
+      <DependentUpon>201906101740257_TicketTableAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101743410_TicketTableAdd1.resx">
+      <DependentUpon>201906101743410_TicketTableAdd1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
