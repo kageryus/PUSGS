@@ -35,19 +35,33 @@ namespace WebApp.Controllers
 
             var date = DateTime.Parse(req["date"].Trim());
 
-            var pricelist = _unitOfWork.Pricelist.GetAll().Where(x => x.EndDate > date && x.StartDate < date);
-            List<Stuf> stuf = new List<Stuf>();
-            foreach( var x in pricelist)
-            {
-                stuf = x.Stufs;
-            }
-
-
-
-            
+            var pricelist = _unitOfWork.Pricelist.GetAll().Where(x => x.EndDate > date && x.StartDate < date).SelectMany(u => u.Stufs).ToList();
+            var indexes = _unitOfWork.Index.GetAll().ToList();
             
 
-            return Ok();
+            double[] ret = new double[26];
+
+            ret[0] = pricelist.Where(t => t.Type == TicketType.time).Select(p => p.Price).FirstOrDefault();
+            ret[1] = ret[0] * indexes.Where(t => t.CustomerType == CustomerType.penzioner).Select(k => k.Coefficient).FirstOrDefault();
+            ret[2] = ret[0] * indexes.Where(t => t.CustomerType == CustomerType.student).Select(k => k.Coefficient).FirstOrDefault();
+
+            ret[3] = pricelist.Where(t => t.Type == TicketType.day).Select(p => p.Price).FirstOrDefault();
+            ret[4] = ret[3] * indexes.Where(t => t.CustomerType == CustomerType.penzioner).Select(k => k.Coefficient).FirstOrDefault();
+            ret[5] = ret[3] * indexes.Where(t => t.CustomerType == CustomerType.student).Select(k => k.Coefficient).FirstOrDefault();
+
+            ret[6] = pricelist.Where(t => t.Type == TicketType.month).Select(p => p.Price).FirstOrDefault();
+            ret[7] = ret[6] * indexes.Where(t => t.CustomerType == CustomerType.penzioner).Select(k => k.Coefficient).FirstOrDefault();
+            ret[8] = ret[6] * indexes.Where(t => t.CustomerType == CustomerType.student).Select(k => k.Coefficient).FirstOrDefault();
+
+            ret[9] = pricelist.Where(t => t.Type == TicketType.year).Select(p => p.Price).FirstOrDefault();
+            ret[10] = ret[9] * indexes.Where(t => t.CustomerType == CustomerType.penzioner).Select(k => k.Coefficient).FirstOrDefault();
+            ret[11] = ret[9] * indexes.Where(t => t.CustomerType == CustomerType.student).Select(k => k.Coefficient).FirstOrDefault();
+
+            //dodati prigradski
+
+
+
+            return Ok(ret);
         }
     }
 }

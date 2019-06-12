@@ -11,6 +11,8 @@ namespace WebApp.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public LineType Type { get; set; }
         public int TimetableId { get; set; }
         public Timetable Timetable { get; set; }
 

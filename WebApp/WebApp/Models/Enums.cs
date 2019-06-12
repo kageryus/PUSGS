@@ -14,4 +14,9 @@ namespace WebApp.Models
     {
         normal = 0, student = 1, penzioner = 2
     }
+
+    public enum LineType
+    {
+        Urban = 0, Suburban = 1
+    }
 }

@@ -299,3 +299,4 @@ D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.pdb
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.csprojAssemblyReference.cache
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.TicketTableAdd.resources
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.TicketTableAdd1.resources
+D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.Model_Update.resources
