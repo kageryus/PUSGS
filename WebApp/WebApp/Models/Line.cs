@@ -13,12 +13,12 @@ namespace WebApp.Models
         public string Name { get; set; }
 
         public LineType Type { get; set; }
-        public int TimetableId { get; set; }
-        public Timetable Timetable { get; set; }
+        //public int TimetableId { get; set; }
+        //public Timetable Timetable { get; set; }
 
-        public virtual List<Location> coordinates {get;set;}
+        //public virtual List<Location> coordinates {get;set;}
 
-        public virtual List<Station> stations { get; set; }
+        public virtual List<Station> Stations { get; set; }
         
     }
 }

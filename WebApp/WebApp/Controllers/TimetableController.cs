@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using WebApp.Models;
 using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
@@ -31,64 +32,76 @@ namespace WebApp.Controllers
 
         [HttpGet]
         [Route("GetTimetable")]
-        public IHttpActionResult GetTimetable()
+        public IHttpActionResult GetTimetable(Line line, DayType day)
         {
-            var req = HttpContext.Current.Request;
-            if(!ModelState.IsValid)
+            var allTimetables = _unitOfWork.Timetable.GetAll().ToList();
+
+            var concreteTimetable = allTimetables.Where(x => x.LineId == line.Id && x.Day == day);
+            if(concreteTimetable == null)
             {
-                return BadRequest();
+                return NotFound();
             }
-            var lineId = Int32.Parse(req["lineId"].Trim());
-            var day = req["day"].Trim();
-
-            var Timetable = _unitOfWork.Timetable.Get(_unitOfWork.Line.Get(lineId).TimetableId);
-
-            switch(day)
+            foreach(var timetable in concreteTimetable)
             {
-                case "WorkDay":
-                    return Ok(Timetable.WorkDay);
-                    
-                case "Saturday":
-                    return Ok(Timetable.Saturday);
-                    
-                case "Sunday":
-                    return Ok(Timetable.Sunday);
-                    
+                timetable.Departures = timetable.Departures.OrderBy(x => x.Hour).ToList();
             }
 
-            return NotFound();
+            return Ok(concreteTimetable);
 
         }
+
+        [HttpPost]
+        [Route("AddTimetable")]
+        public IHttpActionResult AddTimetable(Timetable timetable)
+        {
+            if (timetable == null)
+                return BadRequest();
+
+            Timetable newTimetable = new Timetable() { Day = timetable.Day, LineId = timetable.LineId };
+            _unitOfWork.Timetable.Add(newTimetable);
+            _unitOfWork.Complete();
+
+            foreach(var x in timetable.Departures)
+            {
+                _unitOfWork.Departure.Add(new Departure() { Hour = x.Hour, Minutes = x.Minutes, TimeTableId = newTimetable.Id });
+                _unitOfWork.Complete();
+
+            }
+            return Ok();
+        }
+
+
         [HttpPut]
         [Route("UpdateTimetable")]
-        public IHttpActionResult PutTimetable()
+        public IHttpActionResult PutTimetable(Timetable timetable)
         {
-            var req = HttpContext.Current.Request;
-            if (!ModelState.IsValid)
+            if (_unitOfWork.Timetable.Get(timetable.Id) != null)
+            {
+                _unitOfWork.Timetable.Update(timetable);
+                return Ok();
+            }
+            return NotFound();
+        }
+
+        [HttpDelete]
+        [Route("DeleteTimetable")]
+        public IHttpActionResult DeleteTimetable(int id)
+        {
+            var timetable = _unitOfWork.Timetable.Get(id);
+            if (timetable == null)
             {
                 return BadRequest();
             }
 
-            var lineId = Int32.Parse(req["lineId"].Trim());
-            var workday = req["workday"].Trim();
-            var saturday = req["saturday"].Trim();
-            var sunday = req["sunday"].Trim();
+            foreach(var x in timetable.Departures)
+            {
+                _unitOfWork.Departure.Remove(x);                
+            }
 
-            if (workday == null || saturday == null || sunday == null)
-                return BadRequest();
-
-            var Timetable = _unitOfWork.Timetable.Get(_unitOfWork.Line.Get(lineId).TimetableId);
-            if (Timetable == null)
-                return NotFound();
-
-            Timetable.WorkDay = workday;
-            Timetable.Saturday = saturday;
-            Timetable.Sunday = sunday;
-
-            _unitOfWork.Timetable.Update(Timetable);
+            _unitOfWork.Timetable.Remove(timetable);
+            _unitOfWork.Complete();
 
             return Ok();
-            
         }
     }
 }

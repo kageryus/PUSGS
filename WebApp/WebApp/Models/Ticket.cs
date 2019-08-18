@@ -12,7 +12,11 @@ namespace WebApp.Models
         public bool IsValid { get; set; }
 
         public DateTime BuyTime { get; set; }
+        public TimeSpan RemainingTime { get; set; }
 
-        public int PassengerId { get; set; }
+        public int UserId { get; set; }
+        public ApplicationUser User { get; set; }
+
+        public double Price { get; set; }
     }
 }

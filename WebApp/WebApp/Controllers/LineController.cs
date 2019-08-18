@@ -16,11 +16,11 @@ namespace WebApp.Controllers
         //private DbContext _context;
         private readonly IUnitOfWork _unitOfWork;
 
-      
+
         public LineController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-           // _context = context;
+            // _context = context;
 
         }
 
@@ -28,7 +28,19 @@ namespace WebApp.Controllers
         [Route("GetAll")]
         public IEnumerable<Line> GetLines()
         {
+            //var lines = _unitOfWork.Line.GetAll();
+            //var returnLines = new List<LineModel>();
 
+            //foreach (var line in lines)
+            //{
+            //    var stations = new List<Stations>();
+            //    foreach (var station in line.Stations)
+            //    {
+            //        var statLocation = _unitOfWork.Location.Get(station.LocationId);
+            //        stations.Add(new Stations { Latitude = statLocation.Latitude, Longitude = statLocation.Longitude });
+            //    }
+
+            //}
             return _unitOfWork.Line.GetAll();
         }
 
@@ -40,6 +52,52 @@ namespace WebApp.Controllers
             return Ok(line);
         }
 
+        [HttpPost]
+        [Route("AddLine")]
+        public IHttpActionResult AddLine(Line line)
+        {
+            if (line.Name == "" || line.Name == null)
+            {
+                return BadRequest("You have to fill line name!");
+            }
+
+            var lines = _unitOfWork.Line.GetAll().ToList();
+            if (lines.Exists(x => x.Name == line.Name))
+            {
+                return BadRequest("Line with that name already exist");
+            }
+
+            if (line.Stations == null || line.Stations.Count < 2)
+            {
+                return BadRequest("Line must have at least two stations");
+            }
+
+            _unitOfWork.Line.Add(line);
+            _unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("UpdateLine")]
+        public IHttpActionResult UpdateLine(Line line)
+        {
+            _unitOfWork.Line.Update(line);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteLine(Line line)
+        {
+            if (_unitOfWork.Line.Get(line.Id) != null)
+            {
+                _unitOfWork.Line.Remove(line);
+
+                return Ok();
+            }
+
+            return BadRequest("That line don't exist");
+        }
 
     }
 }

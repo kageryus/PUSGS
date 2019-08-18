@@ -23,45 +23,62 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("GetPrices")]
-        public IHttpActionResult GetPrices()
+        public IHttpActionResult GetPricelists()
         {
-            
-            var req = HttpContext.Current.Request;
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
+            return Ok(_unitOfWork.Pricelist.GetAll());
+        }
 
-            var date = DateTime.Parse(req["date"].Trim());
+        [HttpGet]
+        public IHttpActionResult GetActualPricelist()
+        {
+            Pricelist pricelist = _unitOfWork.Pricelist.GetAll().ToList().FindLast(x => x.EndDate.Value.Date >= DateTime.Now.Date && x.StartDate.Value.Date <= DateTime.Now.Date);
+            return Ok(pricelist);
+        }
 
-            var pricelist = _unitOfWork.Pricelist.GetAll().Where(x => x.EndDate > date && x.StartDate < date).SelectMany(u => u.Stufs).ToList();
+        [HttpPost]
+        public IHttpActionResult AddPricelist(TicketPricelistHelper ticketPricelist)
+        {
+            if (ticketPricelist.Day < 1 || ticketPricelist.Month < 1 || ticketPricelist.Time < 1 || ticketPricelist.Year < 1)
+                return BadRequest("Prices can't be less then 1");
+
+            if (ticketPricelist.PriceList.StartDate.ToString() == "" || ticketPricelist.PriceList.EndDate.ToString() == "")
+                return BadRequest("Dates can't be empty");
+
+            if (ticketPricelist.PriceList.StartDate < DateTime.Now.Date)
+                return BadRequest("Start date can't be in past");
+
+            if (ticketPricelist.PriceList.StartDate > ticketPricelist.PriceList.EndDate)
+                return BadRequest("End date can't be before start date");
+
+            Pricelist pricelist = new Pricelist();
+            pricelist.StartDate = ticketPricelist.PriceList.StartDate;
+            pricelist.EndDate = ticketPricelist.PriceList.EndDate;
+            _unitOfWork.Pricelist.Add(pricelist);
+            _unitOfWork.Complete();
+
             var indexes = _unitOfWork.Index.GetAll().ToList();
-            
+            float normalIndex = indexes.Where(x => x.CustomerType == CustomerType.normal).Select(x => x.Coefficient).First();
+            float studentIndex = indexes.Where(x => x.CustomerType == CustomerType.student).Select(x => x.Coefficient).First();
+            float penzionerIndex = indexes.Where(x => x.CustomerType == CustomerType.penzioner).Select(x => x.Coefficient).First();
 
-            double[] ret = new double[26];
+            _unitOfWork.TicketPrice.Add(new TicketPrice() { Type = TicketType.day, CustomerType = CustomerType.normal, Price = ticketPricelist.Day * normalIndex, PriceListId= pricelist.Id});
+            _unitOfWork.TicketPrice.Add(new TicketPrice() { Type = TicketType.month, CustomerType = CustomerType.normal, Price = ticketPricelist.Month * normalIndex, PriceListId = pricelist.Id });
+            _unitOfWork.TicketPrice.Add(new TicketPrice() { Type = TicketType.year, CustomerType = CustomerType.normal, Price = ticketPricelist.Year * normalIndex, PriceListId = pricelist.Id });
+            _unitOfWork.TicketPrice.Add(new TicketPrice() { Type = TicketType.time, CustomerType = CustomerType.normal, Price = ticketPricelist.Time * normalIndex, PriceListId = pricelist.Id });
 
-            ret[0] = pricelist.Where(t => t.Type == TicketType.time).Select(p => p.Price).FirstOrDefault();
-            ret[1] = ret[0] * indexes.Where(t => t.CustomerType == CustomerType.penzioner).Select(k => k.Coefficient).FirstOrDefault();
-            ret[2] = ret[0] * indexes.Where(t => t.CustomerType == CustomerType.student).Select(k => k.Coefficient).FirstOrDefault();
+            _unitOfWork.TicketPrice.Add(new TicketPrice() { Type = TicketType.day, CustomerType = CustomerType.penzioner, Price = ticketPricelist.Day * penzionerIndex, PriceListId = pricelist.Id });
+            _unitOfWork.TicketPrice.Add(new TicketPrice() { Type = TicketType.month, CustomerType = CustomerType.penzioner, Price = ticketPricelist.Month * penzionerIndex, PriceListId = pricelist.Id });
+            _unitOfWork.TicketPrice.Add(new TicketPrice() { Type = TicketType.year, CustomerType = CustomerType.penzioner, Price = ticketPricelist.Year * penzionerIndex, PriceListId = pricelist.Id });
+            _unitOfWork.TicketPrice.Add(new TicketPrice() { Type = TicketType.time, CustomerType = CustomerType.penzioner, Price = ticketPricelist.Time * penzionerIndex, PriceListId = pricelist.Id });
 
-            ret[3] = pricelist.Where(t => t.Type == TicketType.day).Select(p => p.Price).FirstOrDefault();
-            ret[4] = ret[3] * indexes.Where(t => t.CustomerType == CustomerType.penzioner).Select(k => k.Coefficient).FirstOrDefault();
-            ret[5] = ret[3] * indexes.Where(t => t.CustomerType == CustomerType.student).Select(k => k.Coefficient).FirstOrDefault();
-
-            ret[6] = pricelist.Where(t => t.Type == TicketType.month).Select(p => p.Price).FirstOrDefault();
-            ret[7] = ret[6] * indexes.Where(t => t.CustomerType == CustomerType.penzioner).Select(k => k.Coefficient).FirstOrDefault();
-            ret[8] = ret[6] * indexes.Where(t => t.CustomerType == CustomerType.student).Select(k => k.Coefficient).FirstOrDefault();
-
-            ret[9] = pricelist.Where(t => t.Type == TicketType.year).Select(p => p.Price).FirstOrDefault();
-            ret[10] = ret[9] * indexes.Where(t => t.CustomerType == CustomerType.penzioner).Select(k => k.Coefficient).FirstOrDefault();
-            ret[11] = ret[9] * indexes.Where(t => t.CustomerType == CustomerType.student).Select(k => k.Coefficient).FirstOrDefault();
-
-            //dodati prigradski
+            _unitOfWork.TicketPrice.Add(new TicketPrice() { Type = TicketType.day, CustomerType = CustomerType.student, Price = ticketPricelist.Day * studentIndex, PriceListId = pricelist.Id });
+            _unitOfWork.TicketPrice.Add(new TicketPrice() { Type = TicketType.month, CustomerType = CustomerType.student, Price = ticketPricelist.Month * studentIndex, PriceListId = pricelist.Id });
+            _unitOfWork.TicketPrice.Add(new TicketPrice() { Type = TicketType.year, CustomerType = CustomerType.student, Price = ticketPricelist.Year * studentIndex, PriceListId = pricelist.Id });
+            _unitOfWork.TicketPrice.Add(new TicketPrice() { Type = TicketType.time, CustomerType = CustomerType.student, Price = ticketPricelist.Time * studentIndex, PriceListId = pricelist.Id });
+            _unitOfWork.Complete();
 
 
-
-            return Ok(ret);
+            return Ok();
         }
     }
 }

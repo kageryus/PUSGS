@@ -16,6 +16,8 @@ namespace WebApp.Persistence.UnitOfWork
         public IStationRepository Station { get; set; }
         [Dependency]
         public ILineRepository Line { get; set; }
+        [Dependency]
+        public IDeparturesRepository Departure { get; set; }
 
         [Dependency]
         public ITimetableRepository Timetable { get; set; }
@@ -26,7 +28,9 @@ namespace WebApp.Persistence.UnitOfWork
         [Dependency]
         public IPricelistRepository Pricelist { get; set; }
         [Dependency]
-        public IStufRepository Stuf { get; set; }
+        public ITicketPriceRepository TicketPrice { get; set; }
+        [Dependency]
+        public ITicketRepository Ticket { get; set; }
         public DemoUnitOfWork(DbContext context)
         {
             _context = context;

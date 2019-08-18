@@ -9,12 +9,11 @@ namespace WebApp.Models
     {
         public int Id { get; set; }
 
-        //kljuc je sat, vrednost su minuti u string formatu tipa 16,26,36, itd do 59
-        public string WorkDay { get; set; } //Format ce biti 15:13,14,15,16 ; 16:23,46,......
+        public DayType Day { get; set; }
 
-        public string Saturday { get; set; }
+        public int LineId { get; set; }
+        public Line Line { get; set; }
 
-        public string Sunday { get; set; }
-        //subotu i nedelju 
+        public virtual List<Departure> Departures { get; set; }
     }
 }

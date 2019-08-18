@@ -19,4 +19,9 @@ namespace WebApp.Models
     {
         Urban = 0, Suburban = 1
     }
+
+    public enum DayType
+    {   
+        WorkDay = 0, Saturday, Sunday
+    }
 }

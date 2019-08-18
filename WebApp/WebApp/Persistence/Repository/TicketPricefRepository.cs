@@ -7,10 +7,10 @@ using WebApp.Models;
 
 namespace WebApp.Persistence.Repository
 {
-    public class StufRepository : Repository<Stuf, int>, IStufRepository
+    public class TicketPricefRepository : Repository<TicketPrice, int>, ITicketPriceRepository
     {
         protected ApplicationDbContext AppDbContext { get { return context as ApplicationDbContext; } }
-        public StufRepository(DbContext context) : base(context)
+        public TicketPricefRepository(DbContext context) : base(context)
         {
 
         }

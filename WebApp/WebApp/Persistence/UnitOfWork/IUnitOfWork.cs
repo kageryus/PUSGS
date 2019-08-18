@@ -15,8 +15,10 @@ namespace WebApp.Persistence.UnitOfWork
         IIndexRepository Index { get; set; }
         ILocationRepository Location { get; set; }
         IPricelistRepository Pricelist { get; set; }
-        IStufRepository Stuf { get; set; }
-
+        ITicketPriceRepository TicketPrice { get; set; }
+        
+        ITicketRepository Ticket { get; set; }
+        IDeparturesRepository Departure { get; set; }
         int Complete();
     }
 }

@@ -327,7 +327,7 @@ namespace WebApp.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            //tu
             var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
@@ -420,7 +420,7 @@ namespace WebApp.Controllers
             return null;
         }
 
-        private class ExternalLoginData
+        public class ExternalLoginData
         {
             public string LoginProvider { get; set; }
             public string ProviderKey { get; set; }

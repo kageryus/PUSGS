@@ -300,3 +300,6 @@ D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.csprojAssemblyRef
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.TicketTableAdd.resources
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.TicketTableAdd1.resources
 D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.Model_Update.resources
+D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.Model_Update1.resources
+D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.UpdatedModels.resources
+D:\Users\Vuk\Web2Projekat\PUSGS\WebApp\WebApp\obj\Debug\WebApp.Migrations.UpdateModels2.resources
