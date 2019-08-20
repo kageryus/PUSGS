@@ -28,19 +28,6 @@ namespace WebApp.Controllers
         [Route("GetAll")]
         public IEnumerable<Line> GetLines()
         {
-            //var lines = _unitOfWork.Line.GetAll();
-            //var returnLines = new List<LineModel>();
-
-            //foreach (var line in lines)
-            //{
-            //    var stations = new List<Stations>();
-            //    foreach (var station in line.Stations)
-            //    {
-            //        var statLocation = _unitOfWork.Location.Get(station.LocationId);
-            //        stations.Add(new Stations { Latitude = statLocation.Latitude, Longitude = statLocation.Longitude });
-            //    }
-
-            //}
             return _unitOfWork.Line.GetAll();
         }
 
@@ -87,9 +74,11 @@ namespace WebApp.Controllers
         }
 
         [HttpDelete]
-        public IHttpActionResult DeleteLine(Line line)
+        [Route("DeleteLine")]
+        public IHttpActionResult DeleteLine(int id)
         {
-            if (_unitOfWork.Line.Get(line.Id) != null)
+            var line = _unitOfWork.Line.Get(id);
+            if (line != null)
             {
                 _unitOfWork.Line.Remove(line);
 

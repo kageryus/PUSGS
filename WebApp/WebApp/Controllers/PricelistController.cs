@@ -23,12 +23,14 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
+        [Route("GetPricelists")]
         public IHttpActionResult GetPricelists()
         {
             return Ok(_unitOfWork.Pricelist.GetAll());
         }
 
         [HttpGet]
+        [Route("GetActualPricelist")]
         public IHttpActionResult GetActualPricelist()
         {
             Pricelist pricelist = _unitOfWork.Pricelist.GetAll().ToList().FindLast(x => x.EndDate.Value.Date >= DateTime.Now.Date && x.StartDate.Value.Date <= DateTime.Now.Date);
@@ -36,6 +38,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        [Route("AddPricelist")]
         public IHttpActionResult AddPricelist(TicketPricelistHelper ticketPricelist)
         {
             if (ticketPricelist.Day < 1 || ticketPricelist.Month < 1 || ticketPricelist.Time < 1 || ticketPricelist.Year < 1)

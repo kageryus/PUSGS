@@ -14,9 +14,10 @@ namespace WebApp.Models
         public string Name { get; set; }
 
         public string Address { get; set; }
-        [ForeignKey("Location")]
-        public int LocationId { get; set; }
-        public Location Location { get; set; } //long lat dodati
+        
+        public double Longitude { get; set; } //long lat dodati
+
+        public double Latitude { get; set; }
 
         public virtual List<Line> Lines {get;set;}
 
